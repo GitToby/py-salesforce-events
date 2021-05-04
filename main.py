@@ -35,7 +35,7 @@ class PrivateKeyAuth(AuthenticatorBase):
         async with ClientSession(json_serialize=self.json_dumps) as session:
             payload = {
                 "iss": self.client_id,  # connected app ID
-                "aud": self.audience,  # the login url (test.salesforce.com unless live)
+                "aud": self.audience,  # the login url (test.salesforce.com unless prod)
                 "sub": self.username,
                 "exp": (datetime.now() + timedelta(minutes=5)).timestamp(),
             }
@@ -65,7 +65,7 @@ async def test():
         client_id="3MVG9I9urWjeUW04M799o44usjAaDBjyen1gfdUhDSCaHllng7.7WfsJu1PePTsE2n_2iM.5KukmQaoqS7kPf",
         audience="https://test.salesforce.com",
         username="test123415@example.com",
-        private_key_path=Path("sf_private_key.pem"),
+        private_key_path=Path("sf_private_key.pem"), # in root of project for this example
     )
     async with Client(authenticator=auth) as client:
         # subscribe to topics
