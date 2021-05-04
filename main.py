@@ -15,14 +15,14 @@ from aiohttp import ClientSession
 
 class PrivateKeyAuth(AuthenticatorBase):
     def __init__(
-            self,
-            client_id: str,
-            audience: str,
-            username: str,
-            private_key_path: Path,
-            sandbox: bool = False,
-            json_dumps: JsonDumper = json.dumps,
-            json_loads: JsonLoader = json.loads,
+        self,
+        client_id: str,
+        audience: str,
+        username: str,
+        private_key_path: Path,
+        sandbox: bool = False,
+        json_dumps: JsonDumper = json.dumps,
+        json_loads: JsonLoader = json.loads,
     ) -> None:
         super().__init__(sandbox, json_dumps, json_loads)
         self.client_id = client_id
